@@ -21,7 +21,7 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "jest",
+    "test": "jest --coverage",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint .",
     "storybook": "start-storybook -p 6006",
