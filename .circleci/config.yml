@@ -22,7 +22,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - restore_cache:
-        key: -v3-{{ checksum "requirements/dev.txt"}}
+          key: -v3-{{ checksum "requirements/dev.txt"}}
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       # - node/install-packages
@@ -32,8 +32,11 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+
       - save_cache:
-        key: -v3-{{ checksum "requirements/dev.txt"}}
+          key: -v3-{{ checksum "requirements/dev.txt"}}
+          paths:
+            - "venv"
 
 workflows:
   # Below is the definition of your workflow.
