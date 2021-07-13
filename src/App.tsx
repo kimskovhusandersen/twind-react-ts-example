@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { tw } from 'twind';
 import { Alert } from './components/Alert';
+// Styled components
+import { Avatar } from './components/Avatar';
 import { Button } from './components/Button';
 import { Card } from './components/Card';
 import { Emoji } from './components/Emoji';
-import { ReactLogo } from './components/ReactLogo';
-import { Tips } from './components/Tips';
-
-// Styled components
-import { Avatar } from './components/Avatar';
-import { Pill } from './components/Pill';
 import { Header } from './components/Header';
 import { Input } from './components/Input';
+import { Pill } from './components/Pill';
+import { ReactLogo } from './components/ReactLogo';
 import { SkipLink } from './components/SkipLink';
-
+import { Tips } from './components/Tips';
 import type { InlineDirectiveMap } from './types';
 
 // You could keep an object of inline directives for any
@@ -34,7 +32,7 @@ export default function App() {
       <Header>
         <ReactLogo spin={true} className="w(32 md:16) h(32 md:16)" />
         <h1 className={tw`text(3xl center md:left) font(thin)`}>
-          React + TypeScript + Twind = <Emoji symbol="💙" alt="Love" />
+          Twind react typescript = <Emoji symbol="💙" alt="Love" />
         </h1>
       </Header>
       <main id="main-content" className={tw`flex-1 container mx-auto p-4`}>
