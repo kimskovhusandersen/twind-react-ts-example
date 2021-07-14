@@ -1,43 +1,76 @@
+import type { StyledComponent } from '@twind/react';
+import { styled } from '@twind/react';
 import * as React from 'react';
-import { tw, apply } from 'twind';
-import type { InlineDirectiveMap } from '../types';
-import { lazy } from '../utils';
-
+import type { BaseComponent } from '../types';
 export interface AvatarProps
-  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'size'> {
+  extends BaseComponent,
+    Omit<
+      StyledComponent<
+        {
+          size: {
+            sm: string;
+            md: string;
+            lg: string;
+          };
+          round: {
+            true: string;
+          };
+        },
+        'img'
+      >,
+      'className' | 'selector'
+    >,
+    Omit<
+      React.HTMLAttributes<HTMLImageElement>,
+      'children' | 'className' | 'css'
+    > {
   /**
-   * Instance-level classNames will override local classNames
-   */
-  className?: string;
-  /**
-   * Determines if the avatar will be round
+   * Determines if the button is fully rounded
    */
   round?: boolean;
   /**
-   * The size of the avatar.
+   * Controls the text size and padding of the button
    */
   size?: 'sm' | 'md' | 'lg';
   /**
-   * The URL of the avatar image
+   * Determines the url to the image
    */
-  src?: string;
+  src: string;
+  /**
+   * The alt of the image
+   */
+  alt?: string;
 }
 
-type Size = 'sm' | 'md' | 'lg';
+const StyledAvatar = styled('img', {
+  base: `rounded-md`,
+  variants: {
+    size: {
+      sm: `h-12 w-12`,
+      md: `h-16 w-16`,
+      lg: `h-20 w-20`,
+    },
+    round: {
+      true: `rounded-full`,
+    },
+  },
+  defaults: {
+    size: 'md',
+  },
+});
 
-const sizeMap: InlineDirectiveMap<Size> = {
-  sm: lazy`h-12 w-12`,
-  md: lazy`h-16 w-16`,
-  lg: lazy`h-20 w-20`,
-};
+export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
+  (props) => {
+    const { alt, src, className, ...rest } = props;
+    return (
+      <StyledAvatar src={src} alt={alt || ''} className={className} {...rest} />
+    );
+  },
+);
 
-export const Avatar = (props: AvatarProps) => {
-  const { size = 'md', alt, round, className, ...rest } = props;
-  const appliedClassNames = apply([
-    sizeMap[size],
-    `rounded-${round ? 'full' : 'md'}`,
-  ]);
-  return (
-    <img alt={alt} className={tw(appliedClassNames, className)} {...rest} />
-  );
+// eslint-disable-next-line functional/immutable-data
+Avatar.defaultProps = {
+  className: '',
+  alt: '',
+  src: undefined,
 };

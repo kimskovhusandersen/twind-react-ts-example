@@ -11,15 +11,15 @@ This is an example of a reusable button component:
 */
 
 import * as React from 'react';
-import { tw, apply } from 'twind';
-import { Spinner } from './Spinner';
-import { __DEV__, logClassNames, lazy } from '../utils';
+import { apply, tw } from 'twind';
 import { slowspin } from '../animations';
-import type { InlineDirectiveMap, BaseComponent } from '../types';
+import type { BaseComponent, InlineDirectiveMap } from '../types';
+import { lazy, logClassNames, __DEV__ } from '../utils';
+import { Spinner } from './Spinner';
 
 export interface ButtonProps
   extends BaseComponent,
-    Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
+    Omit<React.HTMLAttributes<HTMLButtonElement>, 'children'> {
   /**
    * Determines if the button is clickable
    */
