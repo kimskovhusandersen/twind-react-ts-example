@@ -1,7 +1,8 @@
 import type { StyledComponent } from '@twind/react';
-import { styled } from '@twind/react';
+import { styled, tw } from '@twind/react';
 import * as React from 'react';
 import type { BaseComponent } from '../types';
+
 export interface AvatarProps
   extends BaseComponent,
     Omit<
@@ -60,7 +61,9 @@ const StyledAvatar = styled('img', {
 });
 
 export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
-  (props) => <StyledAvatar {...props} />,
+  ({ className, ...rest }) => (
+    <StyledAvatar className={tw(className)} {...rest} />
+  ),
 );
 
 // eslint-disable-next-line functional/immutable-data
