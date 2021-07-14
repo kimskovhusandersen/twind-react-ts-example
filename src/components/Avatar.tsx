@@ -60,9 +60,7 @@ const StyledAvatar = styled('img', {
 });
 
 export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(
-  (props) => {
-    return <StyledAvatar {...props} />;
-  },
+  (props) => <StyledAvatar {...props} />,
 );
 
 // eslint-disable-next-line functional/immutable-data
