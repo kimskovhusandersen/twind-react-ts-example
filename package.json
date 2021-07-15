@@ -24,7 +24,7 @@
     "test": "jest --coverage",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint .",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --debug-webpack",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
